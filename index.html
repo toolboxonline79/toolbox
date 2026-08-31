@@ -25,12 +25,63 @@ header{
  align-items:center;
 }
 
+/* ANIMATED LOGO */
+
 .logo{
+ position:relative;
  font:800 28px Orbitron;
  letter-spacing:5px;
+ color:#eee;
+ animation:logoGlow 2.5s ease-in-out infinite;
 }
 
-.logo span{color:#d9ff3f}
+.logo span{
+ color:#d9ff3f;
+}
+
+.logo:after{
+ content:"";
+ position:absolute;
+ left:0;
+ top:0;
+ width:100%;
+ height:100%;
+ background:linear-gradient(
+  120deg,
+  transparent 35%,
+  rgba(217,255,63,.8) 50%,
+  transparent 65%
+ );
+ transform:translateX(-120%);
+ animation:scan 3.5s ease-in-out infinite;
+ pointer-events:none;
+}
+
+@keyframes logoGlow{
+
+ 0%,100%{
+  text-shadow:0 0 0 transparent;
+ }
+
+ 50%{
+  text-shadow:
+   0 0 8px rgba(217,255,63,.25),
+   0 0 18px rgba(217,255,63,.12);
+ }
+
+}
+
+@keyframes scan{
+
+ 0%{
+  transform:translateX(-120%);
+ }
+
+ 45%,100%{
+  transform:translateX(120%);
+ }
+
+}
 
 .status{
  color:#697479;
@@ -223,6 +274,7 @@ button.flash{
 }
 
 @media(max-width:400px){
+
  .calc-buttons{
   gap:4px;
  }
@@ -231,6 +283,7 @@ button.flash{
   min-height:50px;
   font-size:10px;
  }
+
 }
 
 .no-results{
@@ -276,8 +329,15 @@ footer{
 <body>
 
 <header>
- <div class="logo">TOOL<span>BOX</span></div>
- <div class="status">● SYSTEM ONLINE</div>
+
+ <div class="logo">
+  TOOL<span>BOX</span>
+ </div>
+
+ <div class="status">
+  ● SYSTEM ONLINE
+ </div>
+
 </header>
 
 
@@ -290,27 +350,33 @@ footer{
   <span>ONE PLACE.</span>
  </h1>
 
- <p>Fast, simple digital tools without the clutter.</p>
+ <p>
+  Fast, simple digital tools without the clutter.
+ </p>
 
  <div class="search">
+
   <input
    type="search"
    id="search"
    placeholder="SEARCH TOOLS..."
    oninput="searchTools()"
   >
+
  </div>
 
 </section>
 
 
-<div class="section">AVAILABLE TOOLS</div>
+<div class="section">
+ AVAILABLE TOOLS
+</div>
 
 
 <div class="grid">
 
 
-<!-- QR GENERATOR -->
+<!-- QR -->
 
 <section class="tool" data-name="qr generator qr code">
 
@@ -333,7 +399,11 @@ footer{
  </button>
 
  <div class="qr">
-  <div id="code">AWAITING INPUT</div>
+
+  <div id="code">
+   AWAITING INPUT
+  </div>
+
  </div>
 
 </section>
@@ -354,12 +424,26 @@ footer{
   Let TOOLBOX choose for you.
  </p>
 
- <select id="type" onchange="changeRandomType()">
+ <select
+  id="type"
+  onchange="changeRandomType()"
+ >
 
-  <option value="number">RANDOM NUMBER</option>
-  <option value="choice">RANDOM CHOICE</option>
-  <option value="dice">DICE</option>
-  <option value="colour">COLOUR</option>
+  <option value="number">
+   RANDOM NUMBER
+  </option>
+
+  <option value="choice">
+   RANDOM CHOICE
+  </option>
+
+  <option value="dice">
+   DICE
+  </option>
+
+  <option value="colour">
+   COLOUR
+  </option>
 
  </select>
 
@@ -376,7 +460,10 @@ footer{
  </div>
 
 
- <div class="result" id="randomResult">
+ <div
+  class="result"
+  id="randomResult"
+ >
   —
  </div>
 
@@ -390,7 +477,10 @@ footer{
 
 <!-- STOPWATCH -->
 
-<section class="tool" data-name="stopwatch timer clock time">
+<section
+ class="tool"
+ data-name="stopwatch timer clock time"
+>
 
  <div class="tag">TOOL / 003</div>
 
@@ -400,7 +490,10 @@ footer{
   A precise digital stopwatch.
  </p>
 
- <div class="result stopwatch" id="watch">
+ <div
+  class="result stopwatch"
+  id="watch"
+ >
   00:00.00
  </div>
 
@@ -419,7 +512,10 @@ footer{
 
 <!-- CALCULATOR -->
 
-<section class="tool" data-name="calculator math maths">
+<section
+ class="tool"
+ data-name="calculator math maths"
+>
 
  <div class="tag">TOOL / 004</div>
 
@@ -433,34 +529,68 @@ footer{
  <div class="calculator">
 
   <div class="calc-display">
-   <span id="calcText">0</span>
+
+   <span id="calcText">
+    0
+   </span>
+
   </div>
 
 
   <div class="calc-buttons">
 
-   <button onclick="calcButton(this,'clear')">AC</button>
-   <button onclick="calcButton(this,'delete')">DEL</button>
-   <button onclick="calcButton(this,'%')">%</button>
-   <button onclick="calcButton(this,'÷')">÷</button>
+   <button onclick="calcButton(this,'clear')">
+    AC
+   </button>
+
+   <button onclick="calcButton(this,'delete')">
+    DEL
+   </button>
+
+   <button onclick="calcButton(this,'%')">
+    %
+   </button>
+
+   <button onclick="calcButton(this,'÷')">
+    ÷
+   </button>
+
 
    <button onclick="calcButton(this,'7')">7</button>
    <button onclick="calcButton(this,'8')">8</button>
    <button onclick="calcButton(this,'9')">9</button>
-   <button onclick="calcButton(this,'×')">×</button>
+
+   <button onclick="calcButton(this,'×')">
+    ×
+   </button>
+
 
    <button onclick="calcButton(this,'4')">4</button>
    <button onclick="calcButton(this,'5')">5</button>
    <button onclick="calcButton(this,'6')">6</button>
-   <button onclick="calcButton(this,'−')">−</button>
+
+   <button onclick="calcButton(this,'−')">
+    −
+   </button>
+
 
    <button onclick="calcButton(this,'1')">1</button>
    <button onclick="calcButton(this,'2')">2</button>
    <button onclick="calcButton(this,'3')">3</button>
-   <button onclick="calcButton(this,'+')">+</button>
 
-   <button onclick="calcButton(this,'0')">0</button>
-   <button onclick="calcButton(this,'.')">.</button>
+   <button onclick="calcButton(this,'+')">
+    +
+   </button>
+
+
+   <button onclick="calcButton(this,'0')">
+    0
+   </button>
+
+   <button onclick="calcButton(this,'.')">
+    .
+   </button>
+
 
    <button
     style="grid-column:span 2"
@@ -479,15 +609,19 @@ footer{
 </div>
 
 
-<div id="noResults" class="no-results">
+<div
+ id="noResults"
+ class="no-results"
+>
  NO TOOLS FOUND
 </div>
+
 
 </main>
 
 
 <footer>
- TOOLBOX / BUILD 011
+ TOOLBOX / BUILD 012
 </footer>
 
 
@@ -501,7 +635,9 @@ function flash(button){
  button.classList.add("flash");
 
  setTimeout(function(){
+
   button.classList.remove("flash");
+
  },100);
 
 }
@@ -616,7 +752,11 @@ function generateRandom(){
    .filter(x=>x.length>0);
 
   result.innerText =
-  choices[Math.floor(Math.random()*choices.length)];
+  choices[
+   Math.floor(
+    Math.random()*choices.length
+   )
+  ];
 
  }
 
@@ -660,6 +800,7 @@ function searchTools(){
 
  let found=0;
 
+
  tools.forEach(function(tool){
 
   if(tool.dataset.name.includes(query)){
@@ -674,6 +815,7 @@ function searchTools(){
   }
 
  });
+
 
  document.getElementById("noResults").style.display =
  found===0 ? "block" : "none";
@@ -725,7 +867,8 @@ function resetWatch(){
 
  watchElapsed=0;
 
- document.getElementById("watch").innerText="00:00.00";
+ document.getElementById("watch")
+ .innerText="00:00.00";
 
 }
 
@@ -739,11 +882,16 @@ function updateWatch(){
 
  let minutes=Math.floor(time/60000);
 
- let seconds=Math.floor((time%60000)/1000);
+ let seconds=Math.floor(
+  (time%60000)/1000
+ );
 
- let ms=Math.floor((time%1000)/10);
+ let ms=Math.floor(
+  (time%1000)/10
+ );
 
- document.getElementById("watch").innerText =
+ document.getElementById("watch")
+ .innerText =
  String(minutes).padStart(2,"0")
  +":"
  +String(seconds).padStart(2,"0")
@@ -761,6 +909,7 @@ let calc="";
 function calcButton(button,value){
 
  flash(button);
+
 
  if(value==="clear"){
 
@@ -841,6 +990,7 @@ function calculate(){
    .replace(/−/g,"-")
    .replace(/%/g,"/100");
 
+
   let answer =
   Function(
    '"use strict";return ('+
@@ -848,14 +998,17 @@ function calculate(){
    ')'
   )();
 
+
   if(!Number.isFinite(answer))
    throw Error();
+
 
   calc=String(answer);
 
   updateCalc();
 
  }
+
 
  catch{
 
