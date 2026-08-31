@@ -1,13 +1,21 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>TOOLBOX</title>
+
+<title>TOOLBOX — Free Online Tools</title>
+
+<meta name="description" content="Free, fast online tools for everyday tasks.">
+<meta name="robots" content="index, follow">
 
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Space+Grotesk&display=swap" rel="stylesheet">
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
 <style>
+
 *{box-sizing:border-box}
 
 body{
@@ -24,8 +32,6 @@ header{
  justify-content:space-between;
  align-items:center;
 }
-
-/* ANIMATED LOGO */
 
 .logo{
  position:relative;
@@ -58,29 +64,23 @@ header{
 }
 
 @keyframes logoGlow{
-
  0%,100%{
   text-shadow:0 0 0 transparent;
  }
-
  50%{
   text-shadow:
    0 0 8px rgba(217,255,63,.25),
    0 0 18px rgba(217,255,63,.12);
  }
-
 }
 
 @keyframes scan{
-
  0%{
   transform:translateX(-120%);
  }
-
  45%,100%{
   transform:translateX(120%);
  }
-
 }
 
 .status{
@@ -322,6 +322,7 @@ footer{
  }
 
 }
+
 </style>
 </head>
 
@@ -351,7 +352,7 @@ footer{
  </h1>
 
  <p>
-  Fast, simple digital tools without the clutter.
+  Free, fast online tools for everyday tasks.
  </p>
 
  <div class="search">
@@ -376,13 +377,20 @@ footer{
 <div class="grid">
 
 
-<!-- QR -->
+<!-- QR GENERATOR -->
 
-<section class="tool" data-name="qr generator qr code">
+<section
+ class="tool"
+ data-name="qr generator qr code"
+>
 
- <div class="tag">TOOL / 001</div>
+ <div class="tag">
+  TOOL / 001
+ </div>
 
- <h2>QR GENERATOR</h2>
+ <h2>
+  QR GENERATOR
+ </h2>
 
  <p class="description">
   Turn text or a link into a QR code.
@@ -416,9 +424,13 @@ footer{
  data-name="randomizer random generator number dice colour choice"
 >
 
- <div class="tag">TOOL / 002</div>
+ <div class="tag">
+  TOOL / 002
+ </div>
 
- <h2>RANDOMIZER</h2>
+ <h2>
+  RANDOMIZER
+ </h2>
 
  <p class="description">
   Let TOOLBOX choose for you.
@@ -482,9 +494,13 @@ footer{
  data-name="stopwatch timer clock time"
 >
 
- <div class="tag">TOOL / 003</div>
+ <div class="tag">
+  TOOL / 003
+ </div>
 
- <h2>STOPWATCH</h2>
+ <h2>
+  STOPWATCH
+ </h2>
 
  <p class="description">
   A precise digital stopwatch.
@@ -497,15 +513,21 @@ footer{
   00:00.00
  </div>
 
- <button onclick="startWatch()">START</button>
+ <button onclick="startWatch()">
+  START
+ </button>
 
  <br><br>
 
- <button onclick="pauseWatch()">PAUSE</button>
+ <button onclick="pauseWatch()">
+  PAUSE
+ </button>
 
  <br><br>
 
- <button onclick="resetWatch()">RESET</button>
+ <button onclick="resetWatch()">
+  RESET
+ </button>
 
 </section>
 
@@ -517,9 +539,13 @@ footer{
  data-name="calculator math maths"
 >
 
- <div class="tag">TOOL / 004</div>
+ <div class="tag">
+  TOOL / 004
+ </div>
 
- <h2>CALCULATOR</h2>
+ <h2>
+  CALCULATOR
+ </h2>
 
  <p class="description">
   Quick calculations without leaving TOOLBOX.
@@ -556,27 +582,51 @@ footer{
    </button>
 
 
-   <button onclick="calcButton(this,'7')">7</button>
-   <button onclick="calcButton(this,'8')">8</button>
-   <button onclick="calcButton(this,'9')">9</button>
+   <button onclick="calcButton(this,'7')">
+    7
+   </button>
+
+   <button onclick="calcButton(this,'8')">
+    8
+   </button>
+
+   <button onclick="calcButton(this,'9')">
+    9
+   </button>
 
    <button onclick="calcButton(this,'×')">
     ×
    </button>
 
 
-   <button onclick="calcButton(this,'4')">4</button>
-   <button onclick="calcButton(this,'5')">5</button>
-   <button onclick="calcButton(this,'6')">6</button>
+   <button onclick="calcButton(this,'4')">
+    4
+   </button>
+
+   <button onclick="calcButton(this,'5')">
+    5
+   </button>
+
+   <button onclick="calcButton(this,'6')">
+    6
+   </button>
 
    <button onclick="calcButton(this,'−')">
     −
    </button>
 
 
-   <button onclick="calcButton(this,'1')">1</button>
-   <button onclick="calcButton(this,'2')">2</button>
-   <button onclick="calcButton(this,'3')">3</button>
+   <button onclick="calcButton(this,'1')">
+    1
+   </button>
+
+   <button onclick="calcButton(this,'2')">
+    2
+   </button>
+
+   <button onclick="calcButton(this,'3')">
+    3
+   </button>
 
    <button onclick="calcButton(this,'+')">
     +
@@ -621,7 +671,7 @@ footer{
 
 
 <footer>
- TOOLBOX / BUILD 012
+ TOOLBOX / BUILD 013
 </footer>
 
 
@@ -837,9 +887,11 @@ function startWatch(){
 
  watchRunning=true;
 
- watchStart=Date.now()-watchElapsed;
+ watchStart=
+ Date.now()-watchElapsed;
 
- watchTimer=setInterval(updateWatch,10);
+ watchTimer=
+ setInterval(updateWatch,10);
 
 }
 
@@ -852,7 +904,8 @@ function pauseWatch(){
 
  clearInterval(watchTimer);
 
- watchElapsed=Date.now()-watchStart;
+ watchElapsed=
+ Date.now()-watchStart;
 
  updateWatch();
 
@@ -880,15 +933,14 @@ function updateWatch(){
  ? Date.now()-watchStart
  : watchElapsed;
 
- let minutes=Math.floor(time/60000);
+ let minutes=
+ Math.floor(time/60000);
 
- let seconds=Math.floor(
-  (time%60000)/1000
- );
+ let seconds=
+ Math.floor((time%60000)/1000);
 
- let ms=Math.floor(
-  (time%1000)/10
- );
+ let ms=
+ Math.floor((time%1000)/10);
 
  document.getElementById("watch")
  .innerText =
