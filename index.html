@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 
-<title>TOOLBOX</title>
+<title>TOOLBOX — Free Online Tools</title>
 
 <meta name="description" content="Free, fast online tools for everyday tasks.">
 <meta name="google-site-verification" content="xUn8SQm9jsCnLF9ZHfbLk2XFU_m1yagrKDWaxKfr5HM">
@@ -647,6 +647,48 @@ footer{
 
 </section>
 
+
+<!-- UNIT CONVERTER / 006 -->
+
+<section
+ class="tool"
+ data-name="unit converter units conversion convert length weight temperature volume km miles metres meters feet inches kg grams pounds lbs celsius fahrenheit litres liters ml gallons"
+>
+
+ <div class="tag">TOOL / 006</div>
+
+ <h2>UNIT CONVERTER</h2>
+
+ <p class="description">
+  Convert common units instantly.
+ </p>
+
+ <select id="unitCategory" onchange="updateUnits()">
+
+  <option value="length">LENGTH</option>
+  <option value="weight">WEIGHT</option>
+  <option value="temperature">TEMPERATURE</option>
+  <option value="volume">VOLUME</option>
+
+ </select>
+
+ <input
+  type="number"
+  id="unitValue"
+  placeholder="ENTER VALUE"
+  oninput="convertUnits()"
+ >
+
+ <select id="fromUnit" onchange="convertUnits()"></select>
+
+ <select id="toUnit" onchange="convertUnits()"></select>
+
+ <div class="result" id="conversionResult">
+  —
+ </div>
+
+</section>
+
 </div>
 
 <div id="noResults" class="no-results">
@@ -1105,6 +1147,174 @@ function calculate(){
 
 }
 
+
+/* UNIT CONVERTER / 006 */
+
+const unitData={
+
+ length:{
+  "Kilometres":1,
+  "Metres":1000,
+  "Centimetres":100000,
+  "Millimetres":1000000,
+  "Miles":0.621371,
+  "Yards":1093.6133,
+  "Feet":3280.84,
+  "Inches":39370.0787
+ },
+
+ weight:{
+  "Kilograms":1,
+  "Grams":1000,
+  "Milligrams":1000000,
+  "Pounds":2.20462262,
+  "Ounces":35.2739619
+ },
+
+ temperature:{
+  "Celsius":"C",
+  "Fahrenheit":"F",
+  "Kelvin":"K"
+ },
+
+ volume:{
+  "Litres":1,
+  "Millilitres":1000,
+  "Gallons (UK)":0.219969,
+  "Pints (UK)":1.75975,
+  "Cubic metres":0.001
+ }
+
+};
+
+
+function updateUnits(){
+
+ let category=document.getElementById("unitCategory").value;
+
+ let from=document.getElementById("fromUnit");
+ let to=document.getElementById("toUnit");
+
+ from.innerHTML="";
+ to.innerHTML="";
+
+ Object.keys(unitData[category]).forEach(function(unit){
+
+  let option1=document.createElement("option");
+  option1.value=unit;
+  option1.textContent=unit;
+
+  let option2=document.createElement("option");
+  option2.value=unit;
+  option2.textContent=unit;
+
+  from.appendChild(option1);
+  to.appendChild(option2);
+
+ });
+
+ if(to.options.length>1){
+  to.selectedIndex=1;
+ }
+
+ convertUnits();
+
+}
+
+
+function convertUnits(){
+
+ let category=document.getElementById("unitCategory").value;
+
+ let input=document.getElementById("unitValue");
+
+ let value=Number(input.value);
+
+ let from=document.getElementById("fromUnit").value;
+ let to=document.getElementById("toUnit").value;
+
+ let result=document.getElementById("conversionResult");
+
+ if(input.value===""){
+  result.innerText="—";
+  return;
+ }
+
+ if(isNaN(value)){
+  result.innerText="—";
+  return;
+ }
+
+ let converted;
+
+
+ /* TEMPERATURE */
+
+ if(category==="temperature"){
+
+  let celsius;
+
+  if(from==="Celsius"){
+   celsius=value;
+  }
+  else if(from==="Fahrenheit"){
+   celsius=(value-32)*5/9;
+  }
+  else{
+   celsius=value-273.15;
+  }
+
+  if(to==="Celsius"){
+   converted=celsius;
+  }
+  else if(to==="Fahrenheit"){
+   converted=(celsius*9/5)+32;
+  }
+  else{
+   converted=celsius+273.15;
+  }
+
+ }
+
+
+ /* LENGTH / WEIGHT / VOLUME */
+
+ else{
+
+  let fromRate=unitData[category][from];
+  let toRate=unitData[category][to];
+
+  let baseValue=value/fromRate;
+
+  converted=baseValue*toRate;
+
+ }
+
+
+ if(Math.abs(converted)>=1000000 ||
+    (Math.abs(converted)>0 &&
+     Math.abs(converted)<0.000001)){
+
+  result.innerText=
+   converted.toExponential(6)+" "+to;
+
+ }
+ else{
+
+  result.innerText=
+   Number(converted.toFixed(8))+" "+to;
+
+ }
+
+}
+
+
+/* INITIALISE UNIT CONVERTER */
+
+updateUnits();
+
+
+/* CALCULATOR RESIZE */
 
 window.addEventListener(
  "resize",
