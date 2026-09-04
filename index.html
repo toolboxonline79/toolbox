@@ -7,7 +7,7 @@
 
 <title>TOOLBOX — Free Online Tools</title>
 
-<meta name="description" content="Free, fast online tools for everyday tasks.">
+<meta name="description" content="TOOLBOX offers free online tools including a QR code generator, randomizer, stopwatch, calculator, countdown timer, and unit converter.">
 <meta name="google-site-verification" content="xUn8SQm9jsCnLF9ZHfbLk2XFU_m1yagrKDWaxKfr5HM">
 <meta name="robots" content="index, follow">
 
@@ -317,6 +317,65 @@ button.flash{
  padding:10px 3px;
 }
 
+.unit-inputs{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:6px;
+}
+
+.unit-result{
+ min-height:130px;
+ margin:15px 0;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ border:1px solid #252d31;
+ font:24px Orbitron;
+ color:#d9ff3f;
+ text-align:center;
+ padding:15px;
+ overflow:hidden;
+ word-break:break-word;
+}
+
+.seo{
+ margin-top:60px;
+ padding:30px 0;
+ border-top:1px solid #222;
+}
+
+.seo h2{
+ margin-top:0;
+}
+
+.seo p{
+ color:#737d82;
+ line-height:1.7;
+}
+
+.seo-grid{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:20px;
+ margin-top:25px;
+}
+
+.seo-item{
+ background:#0c1013;
+ border:1px solid #222;
+ padding:20px;
+}
+
+.seo-item h3{
+ font:16px Orbitron;
+ margin:0 0 10px;
+}
+
+.seo-item p{
+ margin:0;
+ font-size:14px;
+}
+
 .no-results{
  display:none;
  color:#596267;
@@ -345,6 +404,10 @@ footer{
  }
 
  .grid{
+  grid-template-columns:1fr;
+ }
+
+ .seo-grid{
   grid-template-columns:1fr;
  }
 
@@ -648,11 +711,9 @@ footer{
 </section>
 
 
-<!-- UNIT CONVERTER / 006 -->
-
 <section
  class="tool"
- data-name="unit converter units conversion convert length weight temperature volume km miles metres meters feet inches kg grams pounds lbs celsius fahrenheit litres liters ml gallons"
+ data-name="unit converter converter length weight temperature volume"
 >
 
  <div class="tag">TOOL / 006</div>
@@ -660,7 +721,7 @@ footer{
  <h2>UNIT CONVERTER</h2>
 
  <p class="description">
-  Convert common units instantly.
+  Convert common units quickly and easily.
  </p>
 
  <select id="unitCategory" onchange="updateUnits()">
@@ -679,13 +740,20 @@ footer{
   oninput="convertUnits()"
  >
 
- <select id="fromUnit" onchange="convertUnits()"></select>
+ <div class="unit-inputs">
 
- <select id="toUnit" onchange="convertUnits()"></select>
+  <select id="unitFrom" onchange="convertUnits()"></select>
+  <select id="unitTo" onchange="convertUnits()"></select>
 
- <div class="result" id="conversionResult">
+ </div>
+
+ <div class="unit-result" id="unitResult">
   —
  </div>
+
+ <button onclick="convertUnits()">
+  CONVERT
+ </button>
 
 </section>
 
@@ -695,10 +763,106 @@ footer{
  NO TOOLS FOUND
 </div>
 
+
+<!-- SEO CONTENT -->
+
+<section class="seo">
+
+ <div class="section">
+  POPULAR ONLINE TOOLS
+ </div>
+
+ <h2>
+  FREE ONLINE TOOLS FOR EVERYDAY TASKS
+ </h2>
+
+ <p>
+  TOOLBOX is a collection of free online tools designed to make
+  everyday tasks quick and simple. Use the tools directly in your
+  browser without needing to download an app.
+ </p>
+
+ <div class="seo-grid">
+
+  <div class="seo-item">
+
+   <h3>QR CODE GENERATOR</h3>
+
+   <p>
+    Create a QR code from text or a URL quickly with the free
+    online QR code generator.
+   </p>
+
+  </div>
+
+
+  <div class="seo-item">
+
+   <h3>RANDOM NUMBER GENERATOR</h3>
+
+   <p>
+    Generate random numbers, make random choices, roll a virtual
+    dice, or generate a random colour.
+   </p>
+
+  </div>
+
+
+  <div class="seo-item">
+
+   <h3>ONLINE STOPWATCH</h3>
+
+   <p>
+    Use the free online stopwatch to measure elapsed time with
+    start, pause, and reset controls.
+   </p>
+
+  </div>
+
+
+  <div class="seo-item">
+
+   <h3>ONLINE CALCULATOR</h3>
+
+   <p>
+    Perform quick everyday calculations using the TOOLBOX
+    online calculator.
+   </p>
+
+  </div>
+
+
+  <div class="seo-item">
+
+   <h3>COUNTDOWN TIMER</h3>
+
+   <p>
+    Set hours, minutes, and seconds with the free online
+    countdown timer.
+   </p>
+
+  </div>
+
+
+  <div class="seo-item">
+
+   <h3>UNIT CONVERTER</h3>
+
+   <p>
+    Convert common length, weight, temperature, and volume units
+    quickly with the free online unit converter.
+   </p>
+
+  </div>
+
+ </div>
+
+</section>
+
 </main>
 
 <footer>
- TOOLBOX / BUILD 016
+ TOOLBOX / BUILD 017
 </footer>
 
 
@@ -1148,7 +1312,7 @@ function calculate(){
 }
 
 
-/* UNIT CONVERTER / 006 */
+/* UNIT CONVERTER */
 
 const unitData={
 
@@ -1171,18 +1335,18 @@ const unitData={
   "Ounces":35.2739619
  },
 
- temperature:{
-  "Celsius":"C",
-  "Fahrenheit":"F",
-  "Kelvin":"K"
- },
-
  volume:{
   "Litres":1,
   "Millilitres":1000,
-  "Gallons (UK)":0.219969,
-  "Pints (UK)":1.75975,
-  "Cubic metres":0.001
+  "UK Gallons":0.219969,
+  "UK Pints":1.75975,
+  "Cubic Metres":0.001
+ },
+
+ temperature:{
+  "Celsius":"c",
+  "Fahrenheit":"f",
+  "Kelvin":"k"
  }
 
 };
@@ -1190,32 +1354,27 @@ const unitData={
 
 function updateUnits(){
 
- let category=document.getElementById("unitCategory").value;
+ let category=
+  document.getElementById("unitCategory").value;
 
- let from=document.getElementById("fromUnit");
- let to=document.getElementById("toUnit");
+ let from=
+  document.getElementById("unitFrom");
+
+ let to=
+  document.getElementById("unitTo");
 
  from.innerHTML="";
  to.innerHTML="";
 
  Object.keys(unitData[category]).forEach(function(unit){
 
-  let option1=document.createElement("option");
-  option1.value=unit;
-  option1.textContent=unit;
+  from.innerHTML+=
+   '<option value="'+unit+'">'+unit.toUpperCase()+'</option>';
 
-  let option2=document.createElement("option");
-  option2.value=unit;
-  option2.textContent=unit;
-
-  from.appendChild(option1);
-  to.appendChild(option2);
+  to.innerHTML+=
+   '<option value="'+unit+'">'+unit.toUpperCase()+'</option>';
 
  });
-
- if(to.options.length>1){
-  to.selectedIndex=1;
- }
 
  convertUnits();
 
@@ -1224,97 +1383,73 @@ function updateUnits(){
 
 function convertUnits(){
 
- let category=document.getElementById("unitCategory").value;
+ let category=
+  document.getElementById("unitCategory").value;
 
- let input=document.getElementById("unitValue");
+ let value=Number(
+  document.getElementById("unitValue").value
+ );
 
- let value=Number(input.value);
+ let from=
+  document.getElementById("unitFrom").value;
 
- let from=document.getElementById("fromUnit").value;
- let to=document.getElementById("toUnit").value;
+ let to=
+  document.getElementById("unitTo").value;
 
- let result=document.getElementById("conversionResult");
+ let result=
+  document.getElementById("unitResult");
 
- if(input.value===""){
+ if(!Number.isFinite(value)){
+
   result.innerText="—";
   return;
+
  }
 
- if(isNaN(value)){
-  result.innerText="—";
-  return;
- }
-
- let converted;
-
-
- /* TEMPERATURE */
+ let answer;
 
  if(category==="temperature"){
 
   let celsius;
 
-  if(from==="Celsius"){
+  if(from==="Celsius")
    celsius=value;
-  }
-  else if(from==="Fahrenheit"){
+
+  if(from==="Fahrenheit")
    celsius=(value-32)*5/9;
-  }
-  else{
+
+  if(from==="Kelvin")
    celsius=value-273.15;
-  }
 
-  if(to==="Celsius"){
-   converted=celsius;
-  }
-  else if(to==="Fahrenheit"){
-   converted=(celsius*9/5)+32;
-  }
-  else{
-   converted=celsius+273.15;
-  }
+  if(to==="Celsius")
+   answer=celsius;
 
- }
+  if(to==="Fahrenheit")
+   answer=(celsius*9/5)+32;
 
-
- /* LENGTH / WEIGHT / VOLUME */
-
- else{
-
-  let fromRate=unitData[category][from];
-  let toRate=unitData[category][to];
-
-  let baseValue=value/fromRate;
-
-  converted=baseValue*toRate;
-
- }
-
-
- if(Math.abs(converted)>=1000000 ||
-    (Math.abs(converted)>0 &&
-     Math.abs(converted)<0.000001)){
-
-  result.innerText=
-   converted.toExponential(6)+" "+to;
+  if(to==="Kelvin")
+   answer=celsius+273.15;
 
  }
  else{
 
-  result.innerText=
-   Number(converted.toFixed(8))+" "+to;
+  let base=value/unitData[category][from];
+
+  answer=
+   base*unitData[category][to];
 
  }
+
+ let rounded=
+  Math.round(answer*100000)/100000;
+
+ result.innerText=
+  rounded+" "+to;
 
 }
 
 
-/* INITIALISE UNIT CONVERTER */
-
 updateUnits();
-
-
-/* CALCULATOR RESIZE */
 
 window.addEventListener(
  "resize",
