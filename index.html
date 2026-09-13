@@ -900,7 +900,7 @@ footer{
   id="passwordLength"
   min="4"
   max="64"
-  value="16"
+  value=""
   placeholder="PASSWORD LENGTH"
  >
 
@@ -1671,7 +1671,7 @@ function generatePassword(){
  );
 
  if(!Number.isFinite(length)){
-  length=;
+  length=16;
  }
 
  length=Math.floor(length);
